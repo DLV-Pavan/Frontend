@@ -1,0 +1,27 @@
+h2{
+    background-color: aqua;
+    color:red;
+}
+#Intlcss{
+    background-color: red;
+    color:rgb(238,243,158);
+    text-align: right;
+
+}
+.inlcss{
+    text-align: center;
+    color:purple;
+}
+p{
+    text-align: center;
+    background-color: aqua;
+}
+*{
+    background-color: brown;
+    color:white;
+    text-align: center;
+}
+#Intlcss{
+    text-align: left;
+
+}
