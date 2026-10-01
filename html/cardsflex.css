@@ -1,0 +1,81 @@
+/* Container layout */
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 25px;
+    padding: 40px;
+}
+
+/* Base Card */
+.card {
+    width: 300px;
+    border: 2px solid black; /* Reduced from 5px for cleaner look */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px; /* Fixed comma syntax error */
+    background-color: white;
+}
+
+/* Icons */
+.card i {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+/* Card Heading */
+.card h1 {
+    text-transform: uppercase;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+/* Paragraph text */
+p {
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+/* Button style */
+.btn {
+    border: none;
+    background-color: black;
+    color: white;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: bold;
+    width: 100%; /* Increased from 100px to span across card */
+    padding: 10px ;
+    border-radius: 30px;
+    padding-bottom: 10px;
+}
+
+/* Middle (Instagram) Card Styling */
+.card-instagram {
+    background-color: #e52d65;
+    border-color: #e52d65;
+    color: white;
+}
+
+.card-instagram p {
+    color: white;
+}
+
+.card-instagram .btn {
+    background-color: white;
+    color: #e52d65;
+}
+/* Icon styling */
+.icon {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+/* Ensure Instagram icon turns white */
+.instagram-card .icon {
+    color: white;
+}

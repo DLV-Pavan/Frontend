@@ -1,0 +1,33 @@
+.card{
+    width: 0px;
+    height: 0px;
+    border: 10px solid black;
+    position: relative;
+    overflow: hidden;
+
+}
+img{
+    width: 0%;
+    height: 0%;
+}
+.text{
+    background-color: red;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    margin:0px;
+    transform: translateX(100%);
+    transition: all is linear 0s;
+}
+img {
+    max-width: 300px; /* Adjust to desired size */
+    height: auto;     /* Maintains the original aspect ratio */
+}
+img {
+    width: 200px;  /* Fixed width */
+    height: auto;  /* Prevents image stretching */
+}
+img {
+    width: 50%;   /* Takes up half the container width */
+    height: auto;
+}
