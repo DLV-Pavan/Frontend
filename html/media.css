@@ -1,0 +1,27 @@
+body{
+    padding: 5px;
+}
+nav{
+    display: flex;
+    background-color: aqua;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-links{
+    list-style-type: none;
+    padding: 0px;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+.menu{
+    display: none;
+}
+@media (max-width:800px) {
+    .nav-links{
+        display: none;
+    }
+    .menu{
+        display: block;
+    }
+}
