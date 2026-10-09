@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ApexGear – Premium Tech & Essentials</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --card-border: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-hover: #0284c7;
+      --badge-bg: #0369a1;
+      --radius: 16px;
+      --font: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font);
+      line-height: 1.5;
+      padding-bottom: 60px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Header & Nav */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text-main);
+    }
+
+    .brand span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .cart-btn {
+      position: relative;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 8px 16px;
+      border-radius: 99px;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cart-badge {
+      background: var(--accent);
+      color: #000;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Hero Banner */
+    .hero {
+      max-width: 1200px;
+      margin: 32px auto;
+      padding: 0 24px;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      font-size: 42px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .hero-content p {
+      color: var(--text-muted);
+      font-size: 18px;
+      margin-bottom: 24px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent);
+      color: #0f172a;
+      font-weight: 700;
+      padding: 12px 28px;
+      border-radius: 99px;
+      transition: background 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      color: #fff;
+    }
+
+    .hero-img img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    /* Filter Bar */
+    .catalog {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .filter-bar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      padding: 8px 20px;
+      border-radius: 99px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--accent);
+      color: #0f172a;
+      border-color: var(--accent);
+    }
+
+    /* Grid Layout */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+
+    .product-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 16px;
+    }
+
+    .product-category {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .product-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .product-price {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .product-actions {
+      margin-top: auto;
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-add {
+      flex: 1;
+      background: transparent;
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-add:hover {
+      background: var(--accent);
+      color: #000;
+      border-color: var(--accent);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .hero-card {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="brand">Apex<span>Gear</span></a>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#catalog">Products</a></li>
+        <li><a href="#">Features</a></li>
+        <li><a href="#">Support</a></li>
+      </ul>
+      <button class="cart-btn" onclick="alert('Cart functionality opened!')">
+        🛒 Cart <span class="cart-badge" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-card">
+      <div class="hero-content">
+        <h1>Engineered for Productivity & Power.</h1>
+        <p>Explore high-performance workspace gear, audio devices, and everyday carry essentials.</p>
+        <a href="#catalog" class="btn-primary">Shop Collection</a>
+      </div>
+      <div class="hero-img">
+        <img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=800&q=80" alt="Workspace Setup" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Product Section -->
+  <main class="catalog" id="catalog">
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterCategory('all')">All Products</button>
+      <button class="filter-btn" onclick="filterCategory('audio')">Audio</button>
+      <button class="filter-btn" onclick="filterCategory('desk')">Desk Gear</button>
+      <button class="filter-btn" onclick="filterCategory('wearables')">Wearables</button>
+    </div>
+
+    <div class="grid" id="productGrid">
+      <!-- Products dynamically generated via JS -->
+    </div>
+  </main>
+
+  <script>
+    // Product Dataset
+    const products = [
+      {
+        id: 1,
+        title: "Wireless ANC Headphones",
+        category: "audio",
+        price: "$299",
+        image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        id: 2,
+        title: "Mechanical Ergonomic Keyboard",
+        category: "desk",
+        price: "$149",
+        image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        id: 3,
+        title: "Minimalist Smart Watch",
+        category: "wearables",
+        price: "$199",
+        image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        id: 4,
+        title: "Studio Monitor Speakers",
+        category: "audio",
+        price: "$349",
+        image: "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        id: 5,
+        title: "Precision Wireless Mouse",
+        category: "desk",
+        price: "$89",
+        image: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        id: 6,
+        title: "Fitness Tracker Band",
+        category: "wearables",
+        price: "$79",
+        image: "https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?auto=format&fit=crop&w=600&q=80"
+      }
+    ];
+
+    let cartCount = 0;
+
+    // Render Products to Grid
+    function renderProducts(items) {
+      const grid = document.getElementById('productGrid');
+      grid.innerHTML = items.map(product => `
+        <div class="product-card">
+          <img src="${product.image}" alt="${product.title}" class="product-img" />
+          <div class="product-category">${product.category}</div>
+          <div class="product-title">${product.title}</div>
+          <div class="product-price">${product.price}</div>
+          <div class="product-actions">
+            <button class="btn-add" onclick="addToCart()">Add to Cart</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Category Filtering
+    function filterCategory(category) {
+      // Toggle button active states
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      if (category === 'all') {
+        renderProducts(products);
+      } else {
+        const filtered = products.filter(p => p.category === category);
+        renderProducts(filtered);
+      }
+    }
+
+    // Cart Counter
+    function addToCart() {
+      cartCount++;
+      document.getElementById('cartCount').innerText = cartCount;
+    }
+
+    // Initial Render
+    renderProducts(products);
+  </script>
+</body>
+</html>

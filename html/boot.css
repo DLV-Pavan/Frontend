@@ -1,0 +1,9 @@
+.abc{
+    background-color: red;
+    width: 100%;
+    justify-content: end;
+}
+.card{
+    border-radius: 50px;
+    overflow: hidden;
+}
