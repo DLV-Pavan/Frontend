@@ -1,289 +1,215 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dangeti Lalith Venkat Pavan | Java Full Stack Trainee</title>
+    <title>Dangeti Lalith Venkat Pavan | Java Full Stack Developer &amp; AIML Graduate</title>
+    <meta name="description" content="Portfolio of Dangeti Lalith Venkat Pavan — Java Full Stack Developer, B.Tech AIML Graduate, Oracle & Azure Certified. Explore projects, technical skills, and experience.">
+    <meta name="author" content="Dangeti Lalith Venkat Pavan">
 
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Mobile nav toggle (CSS-only, no JS) -->
-    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <!-- Background Ambient Glow & Blue Cursor Blink Effects -->
+    <div class="ambient-glow glow-top" aria-hidden="true"></div>
+    <div class="ambient-glow glow-middle" aria-hidden="true"></div>
+    <div class="bg-grid-overlay" aria-hidden="true"></div>
+    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+    <canvas id="bg-canvas" class="bg-canvas" aria-hidden="true"></canvas>
 
-    <!-- Navigation -->
-    <header class="site-header">
-        <nav class="navbar">
-            <a href="#home" class="logo">D. Lalith Venkat Pavan</a>
+    <!-- Toast Notification -->
+    <div id="toast" class="toast" role="status" aria-live="polite">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="toast-message">Copied to clipboard!</span>
+    </div>
 
-            <label for="nav-toggle" class="nav-burger" aria-label="Open menu">
-                <span></span><span></span><span></span>
-            </label>
+    <!-- Navigation Header -->
+    <header class="site-header" id="site-header">
+        <nav class="navbar" aria-label="Main Navigation">
+            <a href="#home" class="logo">
+                <span class="logo-accent">&lt;</span>DLV<span class="logo-dot">.</span>Pavan<span class="logo-accent">/&gt;</span>
+            </a>
 
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#certifications">Certifications</a></li>
-                <li><a href="#languages">Languages</a></li>
-                <li><a href="#contact" class="nav-cta">Contact</a></li>
+            <!-- Desktop Nav Links -->
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#certifications" class="nav-link">Certifications</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
+
+            <!-- Header Actions -->
+            <div class="header-actions">
+                <!-- Theme Toggle -->
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle dark/light theme" title="Switch Theme">
+                    <i class="fa-solid fa-moon moon-icon"></i>
+                    <i class="fa-solid fa-sun sun-icon"></i>
+                </button>
+
+                <!-- Quick Resume Link -->
+                <a href="Asserts/DLV PAVAN.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline header-resume-btn">
+                    <i class="fa-solid fa-arrow-down-to-line"></i>
+                    <span>Resume</span>
+                </a>
+
+                <!-- Mobile Hamburger Button -->
+                <button id="mobile-toggle" class="mobile-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
         </nav>
+
+        <!-- Mobile Drawer Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <ul class="mobile-nav-links">
+                <li><a href="#home" class="mobile-nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="#about" class="mobile-nav-link"><i class="fa-solid fa-user"></i> About</a></li>
+                <li><a href="#skills" class="mobile-nav-link"><i class="fa-solid fa-code"></i> Skills</a></li>
+                <li><a href="#projects" class="mobile-nav-link"><i class="fa-solid fa-folder-open"></i> Projects</a></li>
+                <li><a href="#experience" class="mobile-nav-link"><i class="fa-solid fa-briefcase"></i> Experience &amp; Edu</a></li>
+                <li><a href="#certifications" class="mobile-nav-link"><i class="fa-solid fa-certificate"></i> Certifications</a></li>
+                <li><a href="#contact" class="mobile-nav-link"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+            </ul>
+            <div class="mobile-menu-cta">
+                <a href="Asserts/DLV PAVAN.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-full">
+                    <i class="fa-solid fa-file-pdf"></i> Download Resume
+                </a>
+            </div>
+        </div>
     </header>
 
 
-    <!-- Home / Hero -->
-    <section id="home" class="hero">
-        <div class="hero-text">
-            <p class="hero-greeting">Hello, I'm</p>
-            <h1 class="hero-name">Dangeti Lalith<br>Venkat Pavan</h1>
-            <p class="hero-title">Java Full Stack Trainee</p>
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container hero-container">
 
-            <p class="hero-intro">
-                B.Tech graduate in Artificial Intelligence and Machine Learning with a
-                foundation in Java, SQL, HTML, CSS, JavaScript and basic React.
-                Currently training in Java Full Stack development, with hands-on
-                practice writing and debugging real Java programs.
-            </p>
+            <div class="hero-content">
+                <!-- Availability Badge -->
+                <div class="availability-pill">
+                    <span class="pulse-indicator"></span>
+                    <span>Available for Java &amp; Full Stack Roles</span>
+                </div>
 
-            <div class="hero-actions">
-                <a href="#projects" class="btn btn-primary">View Projects</a>
-                <a href="Asserts/DLV PAVAN.pdf" class="btn btn-outline" target="_blank" rel="noopener">View Resume</a>
-            </div>
+                <p class="hero-salutation">Hello, I'm</p>
+                <h1 class="hero-name">
+                    Dangeti Lalith<br>
+                    <span class="gradient-text">Venkat Pavan</span>
+                </h1>
 
-            <div class="hero-meta">
-                <span>Hyderabad, Telangana</span>
-                <span class="dot" aria-hidden="true"></span>
-                <a href="tel:+918317586375">+91 83175 86375</a>
-                <span class="dot" aria-hidden="true"></span>
-                <a href="mailto:dlvpavan11@gmail.com">dlvpavan11@gmail.com</a>
-            </div>
-        </div>
-
-        <div class="hero-panel">
-            <img class="hero-photo" src="Asserts/Professional.png" alt="Portrait of Dangeti Lalith Venkat Pavan">
-        </div>
-    </section>
-
-
-    <!-- About -->
-    <section id="about" class="section about">
-        <div class="about-grid">
-            <div class="about-copy">
-                <h2>About Me</h2>
-                <p>
-                    I am a B.Tech graduate in Artificial Intelligence and Machine
-                    Learning with a strong foundation in Java, SQL, HTML, CSS,
-                    JavaScript and basic React. I'm currently undergoing Java Full
-                    Stack training with hands-on practice in Core Java, and I have
-                    working knowledge of AI/ML concepts and cloud platforms.
+                <p class="hero-subtitle">
+                    <span class="typed-tag">Java Full Stack Trainee</span> &middot; B.Tech AIML Graduate
                 </p>
-                <p>
-                    I enjoy breaking down problems into clean, logical code, and I'm
-                    looking to grow into a dependable Java Software Engineer —
-                    contributing technical skills while continuing to learn.
+
+                <p class="hero-description">
+                    B.Tech graduate in Artificial Intelligence &amp; Machine Learning with a robust foundation in 
+                    <strong>Core Java, SQL, Data Structures &amp; Modern Web Development</strong>. Passionate about 
+                    crafting clean, scalable backend systems, robust OOP architecture, and integrating intelligent features.
                 </p>
-            </div>
 
-            <dl class="about-facts">
-                <div class="fact">
-                    <dt>Focus</dt>
-                    <dd>Java Full Stack Development</dd>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        <span>Explore Projects</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="Asserts/DLV PAVAN.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                        <i class="fa-solid fa-file-arrow-down"></i>
+                        <span>Download CV</span>
+                    </a>
+                    <a href="#contact" class="btn btn-ghost">
+                        <span>Let's Talk</span>
+                    </a>
                 </div>
-                <div class="fact">
-                    <dt>Background</dt>
-                    <dd>B.Tech, Artificial Intelligence &amp; Machine Learning</dd>
+
+                <!-- Hero Meta Quick Contact Bar -->
+                <div class="hero-meta-bar">
+                    <div class="meta-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>Hyderabad, Telangana</span>
+                    </div>
+                    <span class="meta-separator" aria-hidden="true">&bull;</span>
+                    <button class="meta-item copyable-btn" data-copy="dlvpavan11@gmail.com" title="Click to copy email">
+                        <i class="fa-regular fa-envelope"></i>
+                        <span>dlvpavan11@gmail.com</span>
+                        <i class="fa-regular fa-copy copy-icon"></i>
+                    </button>
+                    <span class="meta-separator" aria-hidden="true">&bull;</span>
+                    <button class="meta-item copyable-btn" data-copy="+918317586375" title="Click to copy phone number">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>+91 83175 86375</span>
+                        <i class="fa-regular fa-copy copy-icon"></i>
+                    </button>
                 </div>
-                <div class="fact">
-                    <dt>Currently</dt>
-                    <dd>Training at Codegnan IT Solutions</dd>
-                </div>
-                <div class="fact">
-                    <dt>Based in</dt>
-                    <dd>Hyderabad, Telangana</dd>
-                </div>
-            </dl>
-        </div>
-    </section>
 
-
-    <!-- Education -->
-    <section id="education" class="section education">
-        <h2>Education</h2>
-
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-marker" aria-hidden="true"></div>
-                <div class="timeline-card">
-                    <span class="timeline-date">Nov 2021 &ndash; Apr 2025</span>
-                    <h3>B.Tech, Artificial Intelligence &amp; Machine Learning</h3>
-                    <h4>Aditya Engineering College &middot; Kakinada, Andhra Pradesh</h4>
-                    <p>CGPA: 7.83</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Experience -->
-    <section id="experience" class="section experience">
-        <h2>Experience</h2>
-
-        <div class="log">
-            <article class="log-entry">
-                <header class="log-header">
-                    <span class="log-date">Jun 2026 &ndash; Present &middot; Hyderabad, Telangana</span>
-                    <h3>Java Full Stack Trainee</h3>
-                    <h4>Codegnan IT Solutions</h4>
-                </header>
-                <ul>
-                    <li>Undergoing intensive training in Core Java, Advanced Java, and Data Structures &amp; Algorithms (DSA).</li>
-                    <li>Practicing coding challenges and problem-solving to strengthen programming and logical thinking.</li>
-                    <li>Gaining hands-on experience through practical assignments and Java programming exercises.</li>
-                    <li>Practicing exception handling, collections, multithreading, and the Java 8 Stream API.</li>
-                </ul>
-            </article>
-
-            <article class="log-entry">
-                <header class="log-header">
-                    <span class="log-date">Jun 2023 &ndash; Jul 2023 &middot; Remote</span>
-                    <h3>Web Development Intern</h3>
-                    <h4>Brain O Vision</h4>
-                </header>
-                <ul>
-                    <li>Developed a dynamic website using WordPress and cPanel, gaining hands-on web development experience.</li>
-                    <li>Gained practical experience in web design, theme customization, and plugin integration.</li>
-                    <li>Collaborated remotely with team members and used Git for version control to manage project changes.</li>
-                </ul>
-            </article>
-        </div>
-    </section>
-
-
-    <!-- Projects -->
-    <section id="projects" class="section projects">
-        <h2>Projects</h2>
-
-        <div class="project-container">
-
-            <article class="project-card">
-                <div class="project-top">
-                    <h3>Interns Management System</h3>
-                    <span class="project-date">Mar 2024</span>
-                </div>
-                <p>
-                    A web-based application for managing and tracking intern
-                    details. Handled deployment on Oracle Cloud &mdash; configuring
-                    the cloud environment and gaining hands-on experience in
-                    application hosting and infrastructure management.
-                </p>
-                <div class="project-tech">
-                    <span>JavaScript</span>
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>Oracle Cloud</span>
-                </div>
-            </article>
-
-            <article class="project-card">
-                <div class="project-top">
-                    <h3>Smart Voice Assistant for Plant Disease Detection</h3>
-                    <span class="project-date">Jan 2025</span>
-                </div>
-                <p>
-                    Contributed to a machine learning model for tobacco plant
-                    disease identification, reaching 95% classification accuracy.
-                    Implemented multilingual input and output using Google
-                    Translator and gTTS, and helped integrate the model into the
-                    project application.
-                </p>
-                <div class="project-tech">
-                    <span>AI/ML</span>
-                    <span>React</span>
-                    <span>SQL</span>
-                </div>
-            </article>
-
-            <article class="project-card">
-                <div class="project-top">
-                    <h3>Loan Management System</h3>
-                    <span class="project-date">Core Java</span>
-                </div>
-                <p>
-                    A console-based application managing customers, loan
-                    eligibility, interest, payments and penalties &mdash; applying
-                    OOP concepts, Collections, Exception Handling, Inheritance,
-                    Abstraction and Interfaces.
-                </p>
-                <div class="project-tech">
-                    <span>Core Java</span>
-                    <span>OOPs</span>
-                    <span>Collections</span>
-                    <span>Exception Handling</span>
-                </div>
-            </article>
-
-        </div>
-    </section>
-
-
-    <!-- Skills -->
-    <section id="skills" class="section skills">
-        <h2>Skills</h2>
-
-        <div class="skills-container">
-
-            <div class="skill-card">
-                <h3>Programming Languages</h3>
-                <div class="tag-row">
-                    <span>Java</span>
-                    <span>SQL</span>
+                <!-- Social Quick Links -->
+                <div class="hero-social-links">
+                    <a href="https://github.com/DLV-Pavan" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="GitHub Profile" title="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/dangeti-lalith-venkat-pavan-569a96284/" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="LinkedIn Profile" title="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://wa.me/918317586375?text=Hello%20Lalith%20Venkat%20Pavan,%20I%20reviewed%20your%20portfolio!" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="WhatsApp" title="WhatsApp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                    <a href="mailto:dlvpavan11@gmail.com" class="social-icon-btn" aria-label="Send Email" title="Email Me">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </a>
                 </div>
             </div>
 
-            <div class="skill-card">
-                <h3>Frontend Technologies</h3>
-                <div class="tag-row">
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>JavaScript</span>
-                    <span>React.js (Basic)</span>
-                </div>
-            </div>
+            <!-- Hero Portrait Card with Floating Badges -->
+            <div class="hero-visual">
+                <div class="visual-wrapper">
+                    <div class="photo-frame">
+                        <img src="Asserts/Professional.png" alt="Portrait of Dangeti Lalith Venkat Pavan" class="hero-photo">
+                        <div class="photo-overlay"></div>
+                    </div>
 
-            <div class="skill-card">
-                <h3>Core Concepts</h3>
-                <div class="tag-row">
-                    <span>OOPs</span>
-                    <span>DSA</span>
-                    <span>Collections</span>
-                    <span>Multithreading</span>
-                </div>
-            </div>
+                    <!-- Floating Badge 1: Training -->
+                    <div class="floating-badge badge-top-right">
+                        <div class="badge-icon-box java-bg">
+                            <i class="fa-brands fa-java"></i>
+                        </div>
+                        <div class="badge-text">
+                            <span class="badge-label">Full Stack Trainee</span>
+                            <strong class="badge-val">Codegnan Solutions</strong>
+                        </div>
+                    </div>
 
-            <div class="skill-card">
-                <h3>Developer Tools</h3>
-                <div class="tag-row">
-                    <span>Eclipse IDE</span>
-                    <span>Git</span>
-                    <span>GitHub</span>
-                </div>
-            </div>
+                    <!-- Floating Badge 2: Academic CGPA -->
+                    <div class="floating-badge badge-bottom-left">
+                        <div class="badge-icon-box grad-bg">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <div class="badge-text">
+                            <span class="badge-label">B.Tech AIML</span>
+                            <strong class="badge-val">7.83 CGPA</strong>
+                        </div>
+                    </div>
 
-            <div class="skill-card">
-                <h3>Cloud &amp; Platforms</h3>
-                <div class="tag-row">
-                    <span>Oracle Cloud</span>
-                    <span>Azure DevOps</span>
-                    <span>ServiceNow</span>
+                    <!-- Floating Badge 3: ML Accuracy -->
+                    <div class="floating-badge badge-bottom-right">
+                        <div class="badge-icon-box aiml-bg">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <div class="badge-text">
+                            <span class="badge-label">ML Diagnosis</span>
+                            <strong class="badge-val">95% Accuracy</strong>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -291,97 +217,856 @@
     </section>
 
 
-    <!-- Certifications -->
-    <section id="certifications" class="section certifications">
-        <h2>Certifications</h2>
-
-        <div class="certification-container">
-
-            <div class="certification-card">
-                <h3>Web Development</h3>
-                <p>Fundamentals of web technologies and development concepts.</p>
+    <!-- Quick Highlights Bento Ribbon -->
+    <section class="stats-ribbon">
+        <div class="container stats-container">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-terminal"></i></div>
+                <div class="stat-info">
+                    <h3 class="stat-number">Java &amp; OOP</h3>
+                    <p class="stat-label">Core &amp; Advanced Ecosystem</p>
+                </div>
             </div>
-
-            <div class="certification-card">
-                <h3>Oracle Certified Foundations Associate</h3>
-                <p>Foundational knowledge of Oracle technologies and concepts.</p>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-diagram-project"></i></div>
+                <div class="stat-info">
+                    <h3 class="stat-number">3 Core Projects</h3>
+                    <p class="stat-label">Full Stack, Java &amp; AI Apps</p>
+                </div>
             </div>
-
-            <div class="certification-card">
-                <h3>Certified System Administrator</h3>
-                <p>System administration and platform fundamentals.</p>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-certificate"></i></div>
+                <div class="stat-info">
+                    <h3 class="stat-number">5+ Certifications</h3>
+                    <p class="stat-label">Oracle, Azure &amp; ServiceNow</p>
+                </div>
             </div>
-
-            <div class="certification-card">
-                <h3>Certified Application Developer</h3>
-                <p>Foundational application development knowledge and skills.</p>
-            </div>
-
-            <div class="certification-card">
-                <h3>Microsoft Azure Fundamentals</h3>
-                <p>Foundational knowledge of Microsoft Azure cloud services.</p>
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- Languages -->
-    <section id="languages" class="section languages">
-        <h2>Languages</h2>
-
-        <div class="language-container">
-            <div class="language-card">
-                <h3>English</h3>
-                <p>Professional</p>
-            </div>
-            <div class="language-card">
-                <h3>Telugu</h3>
-                <p>Native</p>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-building-columns"></i></div>
+                <div class="stat-info">
+                    <h3 class="stat-number">7.83 CGPA</h3>
+                    <p class="stat-label">Aditya Engineering College</p>
+                </div>
             </div>
         </div>
     </section>
 
 
-    <!-- Contact -->
-    <section id="contact" class="section contact">
-        <h2>Connect With Me</h2>
-        <p class="contact-intro">I am open to opportunities in Java and Full Stack Development.</p>
+    <!-- About Me & Interactive Code Terminal Section -->
+    <section id="about" class="section about-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag"><i class="fa-solid fa-user-astronaut"></i> Background &amp; Mindset</span>
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Bridging strong software engineering principles with modern AI/ML innovation.</p>
+            </div>
 
-        <div class="contact-card">
-            <a class="contact-row" href="tel:+918317586375">
-                <span class="contact-label">Phone</span>
-                <span class="contact-value">+91 83175 86375</span>
-            </a>
-            <a class="contact-row" href="mailto:dlvpavan11@gmail.com">
-                <span class="contact-label">Email</span>
-                <span class="contact-value">dlvpavan11@gmail.com</span>
-            </a>
-            <div class="contact-row">
-                <span class="contact-label">Location</span>
-                <span class="contact-value">Hyderabad, Telangana</span>
+            <div class="about-grid">
+                <!-- Left Bio Column -->
+                <div class="about-bio-card">
+                    <h3 class="bio-heading">Developing purposeful software with disciplined engineering</h3>
+                    <p>
+                        I hold a <strong>Bachelor of Technology in Artificial Intelligence and Machine Learning</strong> from 
+                        <strong>Aditya Engineering College</strong> (CGPA: 7.83). My technical foundation pairs robust 
+                        computer science fundamentals with practical experience in <strong>Core Java, SQL, DSA, HTML, CSS, JavaScript, and React</strong>.
+                    </p>
+                    <p>
+                        Currently, I am undergoing full-time intensive training in <strong>Java Full Stack Development at Codegnan IT Solutions</strong>, 
+                        where I spend each day writing clean, modular Java code, mastering Object-Oriented design, multi-threaded applications, 
+                        and the Java 8 Stream API.
+                    </p>
+                    <p>
+                        My goal is to step into a <strong>Java Software Engineer / Full Stack Developer</strong> role where I can build reliable, 
+                        high-availability systems, collaborate in agile teams, and continually evolve with modern engineering practices.
+                    </p>
+
+                    <!-- Fast Facts Grid -->
+                    <div class="bio-facts-grid">
+                        <div class="fact-box">
+                            <span class="fact-title">Current Role</span>
+                            <span class="fact-detail">Java Full Stack Trainee</span>
+                        </div>
+                        <div class="fact-box">
+                            <span class="fact-title">Location</span>
+                            <span class="fact-detail">Hyderabad, Telangana</span>
+                        </div>
+                        <div class="fact-box">
+                            <span class="fact-title">Core Languages</span>
+                            <span class="fact-detail">Java (Core/Adv), SQL, JS</span>
+                        </div>
+                        <div class="fact-box">
+                            <span class="fact-title">Cloud Knowledge</span>
+                            <span class="fact-detail">Oracle OCI, Azure AZ-900</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Code Terminal (Unique Interactive Feature) -->
+                <div class="about-terminal-card">
+                    <div class="terminal-header">
+                        <div class="terminal-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span class="terminal-filename">PavanProfile.java</span>
+                        <button class="terminal-copy-btn" id="terminal-copy-btn" title="Copy Code">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+
+                    <div class="terminal-body">
+<pre><code><span class="code-kw">package</span> com.dlvpavan.portfolio;
+
+<span class="code-kw">public class</span> <span class="code-cls">PavanProfile</span> <span class="code-kw">implements</span> <span class="code-cls">SoftwareEngineer</span> {
+
+    <span class="code-kw">private final</span> String name = <span class="code-str">"Dangeti Lalith Venkat Pavan"</span>;
+    <span class="code-kw">private final</span> String degree = <span class="code-str">"B.Tech in AI &amp; ML (7.83 CGPA)"</span>;
+    <span class="code-kw">private</span> String currentTraining = <span class="code-str">"Codegnan IT Solutions"</span>;
+    <span class="code-kw">private</span> String[] coreStack = {
+        <span class="code-str">"Java (Collections, Streams, Multithreading)"</span>,
+        <span class="code-str">"SQL &amp; Relational Databases"</span>,
+        <span class="code-str">"JavaScript &amp; React.js"</span>,
+        <span class="code-str">"Oracle Cloud &amp; Azure DevOps"</span>
+    };
+
+    <span class="code-kw">public boolean</span> <span class="code-fn">isAvailableForHire</span>() {
+        <span class="code-kw">return true</span>; <span class="code-comment">// Open to Full-Time Engineering Roles</span>
+    }
+
+    <span class="code-kw">public void</span> <span class="code-fn">workEthic</span>() {
+        <span class="code-cls">System</span>.out.println(<span class="code-str">"Clean Code. Continuous Learning. Delivering Impact."</span>);
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="terminal-footer">
+                        <span class="terminal-status"><i class="fa-solid fa-check-double"></i> Compiled Successfully &middot; JDK 21</span>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="social-links">
-            <a href="https://github.com/DLV-Pavan" target="_blank" rel="noopener">GitHub</a>
-            <a href="https://www.linkedin.com/in/dangeti-lalith-venkat-pavan-569a96284/" target="_blank" rel="noopener">LinkedIn</a>
+
+    <!-- Technical Skills Section (Bento Grid) -->
+    <section id="skills" class="section skills-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag"><i class="fa-solid fa-screwdriver-wrench"></i> Technical Toolkit</span>
+                <h2 class="section-title">Skills &amp; Competencies</h2>
+                <p class="section-subtitle">Proficiencies developed through rigorous hands-on projects, industry training, and academic excellence.</p>
+            </div>
+
+            <div class="skills-grid">
+
+                <!-- Skill Category 1: Backend & Java -->
+                <div class="skill-category-card featured-category">
+                    <div class="category-header">
+                        <div class="cat-icon-box java-tint">
+                            <i class="fa-brands fa-java"></i>
+                        </div>
+                        <div>
+                            <h3 class="category-title">Backend &amp; Java Ecosystem</h3>
+                            <p class="category-desc">Core strengths &amp; application logic</p>
+                        </div>
+                    </div>
+                    <div class="skills-chip-wrapper">
+                        <div class="skill-chip">
+                            <i class="fa-brands fa-java"></i>
+                            <span>Core Java</span>
+                            <span class="skill-level">Proficient</span>
+                        </div>
+                        <div class="skill-chip">
+                            <i class="fa-solid fa-cubes"></i>
+                            <span>OOP Principles</span>
+                            <span class="skill-level">Strong</span>
+                        </div>
+                        <div class="skill-chip">
+                            <i class="fa-solid fa-layer-group"></i>
+                            <span>Java Collections</span>
+                            <span class="skill-level">Proficient</span>
+                        </div>
+                        <div class="skill-chip">
+                            <i class="fa-solid fa-code-branch"></i>
+                            <span>Java 8 Stream API</span>
+                            <span class="skill-level">Skilled</span>
+                        </div>
+                        <div class="skill-chip">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                            <span>Exception Handling</span>
+                            <span class="skill-level">Strong</span>
+                        </div>
+                        <div class="skill-chip">
+                            <i class="fa-solid fa-microchip"></i>
+                            <span>Multithreading</span>
+                            <span class="skill-level">Working</span>
+                        </div>
+                        <div class="skill-chip">
+                            <i class="fa-solid fa-database"></i>
+                            <span>SQL &amp; Relational DBs</span>
+                            <span class="skill-level">Proficient</span>
+                        </div>
+                        <div class="skill-chip">
+                            <i class="fa-solid fa-plug"></i>
+                            <span>JDBC &amp; Servlets</span>
+                            <span class="skill-level">Intermediate</span>
+                        </div>
+                        <div class="skill-chip">
+                            <i class="fa-solid fa-leaf"></i>
+                            <span>Spring Boot</span>
+                            <span class="skill-level">Learning / Basics</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill Category 2: Frontend & Web Technologies -->
+                <div class="skill-category-card">
+                    <div class="category-header">
+                        <div class="cat-icon-box web-tint">
+                            <i class="fa-brands fa-react"></i>
+                        </div>
+                        <div>
+                            <h3 class="category-title">Frontend &amp; Web Stack</h3>
+                            <p class="category-desc">UI design &amp; client-side scripting</p>
+                        </div>
+                    </div>
+                    <div class="skills-chip-wrapper">
+                        <div class="skill-chip">
+                            <i class="fa-brands fa-html5"></i>
+                            <span>HTML5</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-chip">
+                            <i class="fa-brands fa-css3-alt"></i>
+                            <span>CSS3 &amp; Flexbox/Grid</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-chip">
+                            <i class="fa-brands fa-square-js"></i>
+                            <span>JavaScript (ES6+)</span>
+                            <span class="skill-level">Intermediate</span>
+                        </div>
+                        <div class="skill-chip">
+                            <i class="fa-brands fa-react"></i>
+                            <span>React.js (Basics)</span>
+                            <span class="skill-level">Intermediate</span>
+                        </div>
+                        <div class="skill-chip">
+                            <i class="fa-solid fa-mobile-screen"></i>
+                            <span>Responsive Web Design</span>
+                            <span class="skill-level">Strong</span>
+                        </div>
+                        <div class="skill-chip">
+                            <i class="fa-brands fa-wordpress"></i>
+                            <span>WordPress &amp; cPanel</span>
+                            <span class="skill-level">Skilled</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill Category 3: Cloud, AI & Platforms -->
+                <div class="skill-category-card">
+                    <div class="category-header">
+                        <div class="cat-icon-box cloud-tint">
+                            <i class="fa-solid fa-cloud"></i>
+                        </div>
+                        <div>
+                            <h3 class="category-title">Cloud, AI &amp; Enterprise</h3>
+                            <p class="category-desc">Deployment, infrastructure &amp; intelligence</p>
+                        </div>
+                    </div>
+                    <div class="skills-chip-wrapper">
+                        <div class="skill-chip">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            <span>Oracle Cloud (OCI)</span>
+                            <span class="skill-level">Certified</span>
+                        </div>
+                        <div class="skill-chip">
+                            <i class="fa-brands fa-microsoft"></i>
+                            <span>Microsoft Azure (AZ-900)</span>
+                            <span class="skill-level">Certified</span>
+                        </div>
+                        <div class="skill-chip">
+                            <i class="fa-solid fa-server"></i>
+                            <span>ServiceNow (CSA &amp; CAD)</span>
+                            <span class="skill-level">Certified</span>
+                        </div>
+                        <div class="skill-chip">
+                            <i class="fa-solid fa-brain"></i>
+                            <span>AI &amp; Machine Learning</span>
+                            <span class="skill-level">Academic Degree</span>
+                        </div>
+                        <div class="skill-chip">
+                            <i class="fa-brands fa-python"></i>
+                            <span>Python Basics</span>
+                            <span class="skill-level">Working</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill Category 4: Tools & Engineering Practices -->
+                <div class="skill-category-card">
+                    <div class="category-header">
+                        <div class="cat-icon-box tools-tint">
+                            <i class="fa-solid fa-gears"></i>
+                        </div>
+                        <div>
+                            <h3 class="category-title">Tools &amp; Workflows</h3>
+                            <p class="category-desc">Version control, IDEs &amp; architecture</p>
+                        </div>
+                    </div>
+                    <div class="skills-chip-wrapper">
+                        <div class="skill-chip">
+                            <i class="fa-brands fa-git-alt"></i>
+                            <span>Git Version Control</span>
+                            <span class="skill-level">Proficient</span>
+                        </div>
+                        <div class="skill-chip">
+                            <i class="fa-brands fa-github"></i>
+                            <span>GitHub Workflows</span>
+                            <span class="skill-level">Proficient</span>
+                        </div>
+                        <div class="skill-chip">
+                            <i class="fa-solid fa-code"></i>
+                            <span>VS Code &amp; Eclipse IDE</span>
+                            <span class="skill-level">Daily</span>
+                        </div>
+                        <div class="skill-chip">
+                            <i class="fa-solid fa-project-diagram"></i>
+                            <span>Data Structures (DSA)</span>
+                            <span class="skill-level">Practicing</span>
+                        </div>
+                        <div class="skill-chip">
+                            <i class="fa-solid fa-bug"></i>
+                            <span>Debugging &amp; Problem Solving</span>
+                            <span class="skill-level">Strong</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Projects Showcase Section -->
+    <section id="projects" class="section projects-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag"><i class="fa-solid fa-rocket"></i> Featured Work</span>
+                <h2 class="section-title">Projects Portfolio</h2>
+                <p class="section-subtitle">A collection of academic, cloud-deployed, and full stack systems demonstrating applied problem solving.</p>
+            </div>
+
+            <!-- Project Filter Controls -->
+            <div class="project-filters" role="tablist" aria-label="Filter Projects">
+                <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All Projects</button>
+                <button class="filter-btn" data-filter="java" role="tab" aria-selected="false">Java &amp; Backend</button>
+                <button class="filter-btn" data-filter="web" role="tab" aria-selected="false">Full Stack &amp; Web</button>
+                <button class="filter-btn" data-filter="ai-cloud" role="tab" aria-selected="false">AI &amp; Cloud</button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="projects-grid">
+
+                <!-- Project 1: Smart Voice Assistant for Plant Disease Detection -->
+                <article class="project-card" data-category="ai-cloud web">
+                    <div class="project-card-header">
+                        <div class="project-badge ai-badge">
+                            <i class="fa-solid fa-brain"></i> AI / ML &amp; Web
+                        </div>
+                        <span class="project-date"><i class="fa-regular fa-calendar"></i> Jan 2025</span>
+                    </div>
+
+                    <h3 class="project-title">Smart Voice Assistant for Plant Disease Detection</h3>
+                    
+                    <p class="project-summary">
+                        An intelligent agricultural diagnostic system that classifies tobacco leaf diseases and provides 
+                        multilingual audio assistance to help farmers detect crop ailments early and maximize harvest yield.
+                    </p>
+
+                    <ul class="project-highlights">
+                        <li><i class="fa-solid fa-circle-check"></i> <span>Developed Machine Learning classification model reaching <strong>95% accuracy</strong> on plant leaf image datasets.</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i> <span>Implemented voice interaction utilizing <strong>Google Text-to-Speech (gTTS)</strong> and Google Translator for real-time multilingual response.</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i> <span>Designed dynamic frontend interface using <strong>React.js</strong> and backend SQL data persistence.</span></li>
+                    </ul>
+
+                    <div class="project-tech-stack">
+                        <span class="tech-tag"><i class="fa-brands fa-python"></i> Python / ML</span>
+                        <span class="tech-tag"><i class="fa-brands fa-react"></i> React.js</span>
+                        <span class="tech-tag"><i class="fa-solid fa-database"></i> SQL</span>
+                        <span class="tech-tag"><i class="fa-solid fa-microphone"></i> gTTS &amp; Google API</span>
+                    </div>
+
+                    <div class="project-card-footer">
+                        <a href="https://github.com/DLV-Pavan" target="_blank" rel="noopener noreferrer" class="project-btn outline-btn">
+                            <i class="fa-brands fa-github"></i> Repository
+                        </a>
+                        <span class="metric-pill"><i class="fa-solid fa-chart-line"></i> 95% Accuracy</span>
+                    </div>
+                </article>
+
+                <!-- Project 2: Loan Management System -->
+                <article class="project-card" data-category="java">
+                    <div class="project-card-header">
+                        <div class="project-badge java-badge">
+                            <i class="fa-brands fa-java"></i> Core Java &amp; Architecture
+                        </div>
+                        <span class="project-date"><i class="fa-regular fa-calendar"></i> 2026</span>
+                    </div>
+
+                    <h3 class="project-title">Loan Management &amp; Processing System</h3>
+                    
+                    <p class="project-summary">
+                        An enterprise-grade console application built in Core Java managing customer portfolios, loan eligibility algorithms, 
+                        automated interest amortizations, repayment schedules, and penalty management.
+                    </p>
+
+                    <ul class="project-highlights">
+                        <li><i class="fa-solid fa-circle-check"></i> <span>Engineered using strict <strong>Object-Oriented Programming (OOP)</strong>: Encapsulation, Polymorphism, Abstraction, and Interfaces.</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i> <span>Utilized <strong>Java Collections Framework</strong> (List, Set, Map) for in-memory customer and transaction state management.</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i> <span>Built robust <strong>Exception Handling</strong> architecture with custom business exceptions to safeguard invalid operations.</span></li>
+                    </ul>
+
+                    <div class="project-tech-stack">
+                        <span class="tech-tag"><i class="fa-brands fa-java"></i> Core Java</span>
+                        <span class="tech-tag"><i class="fa-solid fa-cubes"></i> OOP Architecture</span>
+                        <span class="tech-tag"><i class="fa-solid fa-layer-group"></i> Collections</span>
+                        <span class="tech-tag"><i class="fa-solid fa-shield-halved"></i> Custom Exceptions</span>
+                    </div>
+
+                    <div class="project-card-footer">
+                        <a href="https://github.com/DLV-Pavan" target="_blank" rel="noopener noreferrer" class="project-btn outline-btn">
+                            <i class="fa-brands fa-github"></i> Source Code
+                        </a>
+                        <span class="metric-pill"><i class="fa-solid fa-shield-check"></i> Modular OOP</span>
+                    </div>
+                </article>
+
+                <!-- Project 3: Interns Management System -->
+                <article class="project-card" data-category="ai-cloud web">
+                    <div class="project-card-header">
+                        <div class="project-badge cloud-badge">
+                            <i class="fa-solid fa-cloud"></i> Cloud Deployment &amp; Web
+                        </div>
+                        <span class="project-date"><i class="fa-regular fa-calendar"></i> Mar 2024</span>
+                    </div>
+
+                    <h3 class="project-title">Interns Management System &amp; OCI Deployment</h3>
+                    
+                    <p class="project-summary">
+                        A web application built to streamline onboarding, progress tracking, and evaluation of intern cohorts. 
+                        Independently deployed on Oracle Cloud Infrastructure (OCI) with virtual compute provisioning.
+                    </p>
+
+                    <ul class="project-highlights">
+                        <li><i class="fa-solid fa-circle-check"></i> <span>Provisioned and managed compute instances on <strong>Oracle Cloud Infrastructure (OCI)</strong> for hosting the web system.</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i> <span>Implemented full frontend portal with JavaScript, HTML5, and CSS3 for dynamic CRUD operations on intern records.</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i> <span>Configured security ingress rules, web server hosting environment, and network access control.</span></li>
+                    </ul>
+
+                    <div class="project-tech-stack">
+                        <span class="tech-tag"><i class="fa-brands fa-square-js"></i> JavaScript</span>
+                        <span class="tech-tag"><i class="fa-brands fa-html5"></i> HTML5 &amp; CSS3</span>
+                        <span class="tech-tag"><i class="fa-solid fa-cloud"></i> Oracle Cloud (OCI)</span>
+                        <span class="tech-tag"><i class="fa-solid fa-network-wired"></i> Cloud Hosting</span>
+                    </div>
+
+                    <div class="project-card-footer">
+                        <a href="https://github.com/DLV-Pavan" target="_blank" rel="noopener noreferrer" class="project-btn outline-btn">
+                            <i class="fa-brands fa-github"></i> Repository
+                        </a>
+                        <span class="metric-pill"><i class="fa-solid fa-server"></i> OCI Hosted</span>
+                    </div>
+                </article>
+
+
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Experience & Education Dual Journey Section -->
+    <section id="experience" class="section journey-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag"><i class="fa-solid fa-timeline"></i> Professional Pathway</span>
+                <h2 class="section-title">Experience &amp; Education</h2>
+                <p class="section-subtitle">My practical training, internship contributions, and foundational academic journey.</p>
+            </div>
+
+            <div class="journey-grid">
+
+                <!-- Left Column: Experience -->
+                <div class="journey-column">
+                    <h3 class="column-title"><i class="fa-solid fa-briefcase"></i> Work &amp; Training Experience</h3>
+                    
+                    <div class="timeline-v2">
+
+                        <!-- Item 1: Codegnan -->
+                        <div class="timeline-v2-card current-item">
+                            <div class="timeline-badge-pin"><i class="fa-solid fa-circle-dot"></i></div>
+                            <div class="timeline-meta-row">
+                                <span class="timeline-duration">June 2026 &ndash; Present</span>
+                                <span class="timeline-location"><i class="fa-solid fa-location-dot"></i> Hyderabad, TS</span>
+                            </div>
+                            <h4 class="timeline-role">Java Full Stack Trainee</h4>
+                            <h5 class="timeline-org">Codegnan IT Solutions</h5>
+                            <p class="timeline-lead">
+                                Undergoing immersive, professional software development training focused on enterprise Java systems and modern web technologies.
+                            </p>
+                            <ul class="timeline-bullets">
+                                <li>Intensive practice in Core Java, Object-Oriented Design, Advanced Java, and Data Structures &amp; Algorithms (DSA).</li>
+                                <li>Solving daily algorithmic challenges to strengthen logical reasoning and time-complexity optimization.</li>
+                                <li>Building practical assignments implementing Multithreading, Exception Handling, Collections, and the Java 8 Stream API.</li>
+                                <li>Developing full-stack workflows bridging Java backend logic with SQL database storage.</li>
+                            </ul>
+                            <div class="timeline-tags">
+                                <span>Core Java</span>
+                                <span>Advanced Java</span>
+                                <span>DSA</span>
+                                <span>Stream API</span>
+                                <span>SQL</span>
+                            </div>
+                        </div>
+
+                        <!-- Item 2: Brain O Vision -->
+                        <div class="timeline-v2-card">
+                            <div class="timeline-badge-pin"><i class="fa-solid fa-laptop-code"></i></div>
+                            <div class="timeline-meta-row">
+                                <span class="timeline-duration">June 2023 &ndash; July 2023</span>
+                                <span class="timeline-location"><i class="fa-solid fa-globe"></i> Remote</span>
+                            </div>
+                            <h4 class="timeline-role">Web Development Intern</h4>
+                            <h5 class="timeline-org">Brain O Vision</h5>
+                            <p class="timeline-lead">
+                                Collaborated on creating and publishing dynamic websites with hands-on web design, CMS, and hosting administration.
+                            </p>
+                            <ul class="timeline-bullets">
+                                <li>Engineered dynamic website pages using WordPress, cPanel, and customized CSS styling.</li>
+                                <li>Handled theme customization, plugin integrations, and cross-browser responsiveness testing.</li>
+                                <li>Used Git for collaborative code commits and version tracking across remote sprint deliveries.</li>
+                            </ul>
+                            <div class="timeline-tags">
+                                <span>WordPress</span>
+                                <span>cPanel</span>
+                                <span>Git</span>
+                                <span>HTML/CSS</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Right Column: Education & Languages -->
+                <div class="journey-column">
+                    <h3 class="column-title"><i class="fa-solid fa-graduation-cap"></i> Education &amp; Background</h3>
+                    
+                    <div class="timeline-v2">
+
+                        <!-- Item 1: B.Tech -->
+                        <div class="timeline-v2-card education-card">
+                            <div class="timeline-badge-pin"><i class="fa-solid fa-award"></i></div>
+                            <div class="timeline-meta-row">
+                                <span class="timeline-duration">Nov 2021 &ndash; April 2025</span>
+                                <span class="timeline-grade-badge">CGPA: 7.83 / 10</span>
+                            </div>
+                            <h4 class="timeline-role">B.Tech in Artificial Intelligence &amp; Machine Learning</h4>
+                            <h5 class="timeline-org">Aditya Engineering College &middot; Kakinada, AP</h5>
+                            <p class="timeline-lead">
+                                Graduated with strong distinction in computer science foundations, algorithm analysis, mathematical modeling, and artificial intelligence.
+                            </p>
+                            <div class="coursework-box">
+                                <span class="coursework-title">Relevant Core Subjects:</span>
+                                <p>Object Oriented Programming with Java, Data Structures &amp; Algorithms, Database Management Systems (DBMS), Machine Learning, Operating Systems, Computer Networks.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Languages Card -->
+                    <div class="languages-box">
+                        <h4 class="languages-box-title"><i class="fa-solid fa-language"></i> Language Proficiencies</h4>
+                        <div class="languages-flex">
+                            <div class="language-pill">
+                                <span class="lang-name">English</span>
+                                <span class="lang-badge">Professional Working</span>
+                            </div>
+                            <div class="language-pill">
+                                <span class="lang-name">Telugu</span>
+                                <span class="lang-badge">Native / Bilingual</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="section cert-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag"><i class="fa-solid fa-stamp"></i> Verified Credentials</span>
+                <h2 class="section-title">Industry Certifications</h2>
+                <p class="section-subtitle">Recognized certifications validating expertise across cloud architecture, administration, and modern software development.</p>
+            </div>
+
+            <div class="certifications-grid">
+
+                <!-- Cert 1: Oracle -->
+                <div class="cert-card">
+                    <div class="cert-icon-wrapper oracle-color">
+                        <i class="fa-solid fa-cloud-bolt"></i>
+                    </div>
+                    <div class="cert-content">
+                        <span class="cert-issuer">Oracle University</span>
+                        <h3 class="cert-name">Oracle Certified Foundations Associate</h3>
+                        <p class="cert-details">
+                            Validated understanding of Oracle Cloud Infrastructure (OCI) architecture, cloud security, compute services, and database management.
+                        </p>
+                        <div class="cert-footer">
+                            <span class="cert-status-badge"><i class="fa-solid fa-circle-check"></i> Certified</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cert 2: ServiceNow CSA -->
+                <div class="cert-card">
+                    <div class="cert-icon-wrapper sn-color">
+                        <i class="fa-solid fa-server"></i>
+                    </div>
+                    <div class="cert-content">
+                        <span class="cert-issuer">ServiceNow</span>
+                        <h3 class="cert-name">Certified System Administrator (CSA)</h3>
+                        <p class="cert-details">
+                            Platform administration, user management, workflows, system security policies, and incident/request automation.
+                        </p>
+                        <div class="cert-footer">
+                            <span class="cert-status-badge"><i class="fa-solid fa-circle-check"></i> Certified</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cert 3: ServiceNow CAD -->
+                <div class="cert-card">
+                    <div class="cert-icon-wrapper sn-color">
+                        <i class="fa-solid fa-laptop-file"></i>
+                    </div>
+                    <div class="cert-content">
+                        <span class="cert-issuer">ServiceNow</span>
+                        <h3 class="cert-name">Certified Application Developer (CAD)</h3>
+                        <p class="cert-details">
+                            Application development lifecycle, business rules, client scripts, UI actions, table schema design, and API integrations.
+                        </p>
+                        <div class="cert-footer">
+                            <span class="cert-status-badge"><i class="fa-solid fa-circle-check"></i> Certified</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cert 4: Azure AZ-900 -->
+                <div class="cert-card">
+                    <div class="cert-icon-wrapper azure-color">
+                        <i class="fa-brands fa-microsoft"></i>
+                    </div>
+                    <div class="cert-content">
+                        <span class="cert-issuer">Microsoft</span>
+                        <h3 class="cert-name">Microsoft Azure Fundamentals (AZ-900)</h3>
+                        <p class="cert-details">
+                            Foundational cloud computing concepts, Azure architectural components, governance, security, and cloud cost management.
+                        </p>
+                        <div class="cert-footer">
+                            <span class="cert-status-badge"><i class="fa-solid fa-circle-check"></i> Certified</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cert 5: Web Development -->
+                <div class="cert-card">
+                    <div class="cert-icon-wrapper web-color">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <div class="cert-content">
+                        <span class="cert-issuer">Industry Certification</span>
+                        <h3 class="cert-name">Full Stack Web Development</h3>
+                        <p class="cert-details">
+                            Modern web standards, responsive interface design, DOM manipulation, asynchronous JavaScript, and REST APIs.
+                        </p>
+                        <div class="cert-footer">
+                            <span class="cert-status-badge"><i class="fa-solid fa-circle-check"></i> Certified</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Contact & Connect Section -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag"><i class="fa-solid fa-paper-plane"></i> Let's Collaborate</span>
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Open to full-time Java Full Stack and Software Engineering roles. Let's build something exceptional together!</p>
+            </div>
+
+            <div class="contact-grid">
+
+                <!-- Left Column: Direct Contact Info & Quick Copy -->
+                <div class="contact-info-panel">
+                    <h3 class="contact-panel-heading">Direct Contact Information</h3>
+                    <p class="contact-panel-sub">
+                        Feel free to reach out via phone, email, or WhatsApp. I usually respond within a few hours.
+                    </p>
+
+                    <div class="contact-channels">
+
+                        <!-- Email Box -->
+                        <div class="channel-card">
+                            <div class="channel-icon-box"><i class="fa-regular fa-envelope"></i></div>
+                            <div class="channel-body">
+                                <span class="channel-label">Email Address</span>
+                                <a href="mailto:dlvpavan11@gmail.com" class="channel-value">dlvpavan11@gmail.com</a>
+                            </div>
+                            <button class="channel-copy-btn copyable-btn" data-copy="dlvpavan11@gmail.com" title="Copy Email">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                        </div>
+
+                        <!-- Phone Box -->
+                        <div class="channel-card">
+                            <div class="channel-icon-box"><i class="fa-solid fa-phone"></i></div>
+                            <div class="channel-body">
+                                <span class="channel-label">Phone &amp; WhatsApp</span>
+                                <a href="tel:+918317586375" class="channel-value">+91 83175 86375</a>
+                            </div>
+                            <button class="channel-copy-btn copyable-btn" data-copy="+918317586375" title="Copy Phone Number">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                        </div>
+
+                        <!-- Location Box -->
+                        <div class="channel-card">
+                            <div class="channel-icon-box"><i class="fa-solid fa-location-dot"></i></div>
+                            <div class="channel-body">
+                                <span class="channel-label">Current Location</span>
+                                <span class="channel-value">Hyderabad, Telangana, India</span>
+                            </div>
+                            <span class="channel-badge">Open to Relocate</span>
+                        </div>
+
+                    </div>
+
+                    <!-- Social / Professional Buttons -->
+                    <div class="contact-social-bar">
+                        <a href="https://www.linkedin.com/in/dangeti-lalith-venkat-pavan-569a96284/" target="_blank" rel="noopener noreferrer" class="social-pill-btn linkedin-btn">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                            <span>Connect on LinkedIn</span>
+                        </a>
+                        <a href="https://github.com/DLV-Pavan" target="_blank" rel="noopener noreferrer" class="social-pill-btn github-btn">
+                            <i class="fa-brands fa-github"></i>
+                            <span>Explore GitHub</span>
+                        </a>
+                        <a href="https://wa.me/918317586375?text=Hello%20Pavan,%20I%20would%20like%20to%20discuss%20a%20job%20opportunity%20with%20you!" target="_blank" rel="noopener noreferrer" class="social-pill-btn whatsapp-btn">
+                            <i class="fa-brands fa-whatsapp"></i>
+                            <span>Chat on WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive Quick Message Form -->
+                <div class="contact-form-panel">
+                    <h3 class="contact-panel-heading">Send a Direct Message</h3>
+                    <p class="contact-panel-sub">
+                        Have a job requirement or project idea? Drop a note below to open your email client prefilled:
+                    </p>
+
+                    <form id="contact-form" class="interactive-form">
+                        <div class="form-group">
+                            <label for="contact-name">Your Name / Organization <span class="required">*</span></label>
+                            <input type="text" id="contact-name" name="name" placeholder="e.g. Hiring Manager / Tech Recruiter" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-email">Your Email Address <span class="required">*</span></label>
+                            <input type="email" id="contact-email" name="email" placeholder="e.g. recruiter@company.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-subject">Opportunity / Subject</label>
+                            <input type="text" id="contact-subject" name="subject" placeholder="e.g. Java Full Stack Developer Role">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-message">Message Details <span class="required">*</span></label>
+                            <textarea id="contact-message" name="message" rows="4" placeholder="Briefly describe the role, tech stack, or inquiry..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full submit-btn">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span>Send Message</span>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
         </div>
     </section>
 
 
     <!-- Footer -->
     <footer class="site-footer">
-        <p class="footer-name">Dangeti Lalith Venkat Pavan</p>
-        <p class="footer-title">Java Full Stack Trainee &middot; B.Tech AIML Graduate</p>
+        <div class="container footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="#home" class="logo">
+                        <span class="logo-accent">&lt;</span>DLV<span class="logo-dot">.</span>Pavan<span class="logo-accent">/&gt;</span>
+                    </a>
+                    <p class="footer-tagline">
+                        Java Full Stack Developer &middot; B.Tech AIML Graduate &middot; Hyderabad, India
+                    </p>
+                </div>
 
-        <div class="footer-links">
-            <a href="https://github.com/DLV-Pavan" target="_blank" rel="noopener">GitHub</a>
-            <a href="https://www.linkedin.com/in/dangeti-lalith-venkat-pavan-569a96284/" target="_blank" rel="noopener">LinkedIn</a>
+                <div class="footer-nav">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#certifications">Certifications</a>
+                    <a href="#contact">Contact</a>
+                </div>
+
+                <div class="footer-socials">
+                    <a href="https://github.com/DLV-Pavan" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/dangeti-lalith-venkat-pavan-569a96284/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="mailto:dlvpavan11@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="tel:+918317586375" aria-label="Phone"><i class="fa-solid fa-phone"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-divider"></div>
+
+            <div class="footer-bottom">
+                <p class="footer-copy">&copy; 2026 Dangeti Lalith Venkat Pavan. Designed with clean precision.</p>
+                <a href="#home" class="back-to-top" aria-label="Back to top">
+                    <span>Back to Top</span>
+                    <i class="fa-solid fa-arrow-up"></i>
+                </a>
+            </div>
         </div>
-
-        <p class="footer-copy">&copy; 2026 Dangeti Lalith Venkat Pavan. All Rights Reserved.</p>
     </footer>
+
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
 
 </body>
 </html>

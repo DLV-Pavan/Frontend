@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+</head>
+<body>
+    <h1>Reg Form</h1>
+    <!-- reg form -->
+    <form onsubmit="reg(event)">
+        <input type="text" placeholder="name" id="name">
+        <input type="number" placeholder="number" id="number">
+        <input type="email" placeholder="email" id="email">
+        <input type="password" placeholder="password" id="password">
+        <input type="password" placeholder="confirm password" id="cPassword">
+        <input type="submit" value="Reg">
+    </form>
+    
+    <button onclick="getData()">GetData</button>
+
+    <div id="ref" class="container">
+        <!-- cards from js -->
+    </div>
+   
+
+<script src="./async.js"></script>
+</body>
