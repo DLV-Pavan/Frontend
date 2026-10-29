@@ -1,16 +1,9 @@
-import './App.css'
-import Nav from './Nav'
+import React from 'react';
+
+import Rapido from './Components/Rapido';
 
 function App() {
-  return (
-    <div>
-     
-      <h1>WELCOME</h1>
-      <h2>PAVAN</h2>
-      <div className='box'>
-
-      </div>
-    </div>
-  )
+  return <Rapido />;
 }
-export default App
+
+export default App;
